@@ -44,23 +44,40 @@ public class Show implements CmdBase {
                 map.put(Secrey.secret(line[0],false), Secrey.secret(line[1],false));
             }
             Set<String> set = map.keySet();
-            Iterator iterator = set.iterator();
-            boolean has = false;
-            while (iterator.hasNext()) {
-                String head = (String) iterator.next();
+            List<String> list=new ArrayList<>(set);
+            List<String> passwordList=new ArrayList<>();
+            int count=0;
+            for(String head:list){
                 if (contains(head, regex)) {
-                    has = true;
                     String[] info = map.get(head).split("\\n");
-                    System.out.println("--------------------");
+                    passwordList.add(info[2]);
+                    System.out.println();
+                    System.out.println(++count);
+                    System.out.println("-------------------");
                     System.out.println("   title:" + info[0]);
                     System.out.println("username:" + info[1]);
                     System.out.println("password:" + info[2]);
                     System.out.println("    memo:" + info[3]);
-                    System.out.println("--------------------");
+                    System.out.println("-------------------");
                 }
             }
-            if (!has) System.out.println("未找到相关密钥 :|");
-
+            System.out.println();
+            if (list.size()==0) System.out.println("未找到相关密钥 :|");
+            else {
+                Utils.tell("请输入序号，密钥将被拷贝到粘贴板：");
+                String order=Utils.input();
+                if(!order.matches("\\d+")){
+                    Utils.tell("编号错误",false,true);
+                }else {
+                    int orderNum=Integer.valueOf(order);
+                    if(orderNum>passwordList.size()){
+                        Utils.tell("编号超出范围",false,true);
+                    }else {
+                        Utils.setClipboardString(passwordList.get(orderNum-1));
+                        Utils.tell("拷贝成功",true,true);
+                    }
+                }
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }finally {

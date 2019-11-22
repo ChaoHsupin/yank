@@ -1,5 +1,9 @@
 package site.yan.key;
 
+import java.awt.*;
+import java.awt.datatransfer.Clipboard;
+import java.awt.datatransfer.StringSelection;
+import java.awt.datatransfer.Transferable;
 import java.util.Scanner;
 
 /**
@@ -22,9 +26,20 @@ public class Utils {
         return input;
     }
 
-    public static boolean contains(String text, String regex) {
+    public static boolean contains(String text, final String regex) {
         if (text.startsWith(regex) || text.endsWith(regex)) return true;
         if (text.split(regex).length > 1) return true;
+        Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
         return false;
+    }
+
+    /**
+     * 操控粘贴板
+     * @param text
+     */
+    public static void setClipboardString(String text) {
+        Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
+        Transferable trans = new StringSelection(text);
+        clipboard.setContents(trans, null);
     }
 }
