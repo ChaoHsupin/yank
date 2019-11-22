@@ -25,7 +25,7 @@ public class Secrey {
             try {
                 file.createNewFile();
                 FileWriter fileWriter = new FileWriter(file);
-                fileWriter.write(Secrey.secret(pin));
+                fileWriter.write(Secrey.secret(pin,true));
                 fileWriter.close();
                 System.out.println("PIN码设置成功 :)");
             } catch (IOException e) {
@@ -50,7 +50,7 @@ public class Secrey {
             FileReader fileReader = new FileReader(file);
             BufferedReader reader = new BufferedReader(fileReader);
             String re = reader.readLine();
-            return (Secrey.secret(pin).equals(re));
+            return (Secrey.secret(pin,true).equals(re));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -63,7 +63,7 @@ public class Secrey {
             if (!file.exists()) file.createNewFile();
             FileWriter fileWriter = new FileWriter(file, true);
             PrintWriter printWriter = new PrintWriter(fileWriter);
-            printWriter.println(Secrey.secret(title) + " " + Secrey.secret(info));
+            printWriter.println(Secrey.secret(title,true) + " " + Secrey.secret(info,true));
             fileWriter.close();
             return true;
         } catch (IOException e) {
@@ -72,14 +72,7 @@ public class Secrey {
         }
     }
 
-    public static String secret(String text) {
-
-        //讲获取的字符串转成字符数组
-        char[] c = text.toCharArray();
-        //使用for循环给字符数组加密
-        for (int i = 0; i < c.length; i++) {
-            c[i] = (char) (c[i] ^ 20000);
-        }
-        return new String(c);
+    public static String secret(String text ,boolean encode) {
+        return encode? AesCore.encrypt(text): AesCore.decrypt(text);
     }
 }

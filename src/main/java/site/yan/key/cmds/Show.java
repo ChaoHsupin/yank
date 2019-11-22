@@ -41,7 +41,7 @@ public class Show implements Run {
             String temp;
             while (Objects.nonNull(temp = bufferedReader.readLine())) {
                 String[] line = temp.split(" ");
-                map.put(Secrey.secret(line[0]), Secrey.secret(line[1]));
+                map.put(Secrey.secret(line[0],false), Secrey.secret(line[1],false));
             }
             Set<String> set = map.keySet();
             Iterator iterator = set.iterator();
