@@ -1,4 +1,4 @@
-package site.yan.key;
+package site.yan.key.securtiy;
 import java.io.UnsupportedEncodingException;
 
 import javax.crypto.Cipher;
@@ -28,11 +28,15 @@ public class AesCore {
     //public static final String AES_TYPE = "AES/CBC/ZeroPadding";
 
     //密钥
-    private static final String AES_KEY="147896325632147896321452";   //AES固定格式为128/192/256 bits.即：16/24/32bytes。DES固定格式为128bits，即8bytes。
+    private static  String AES_KEY="81dc9bdb52d04dc20036dbd8";   //AES固定格式为128/192/256 bits.即：16/24/32bytes。DES固定格式为128bits，即8bytes。
 
     //字符补全
     private static final String[] consult = new String[]{"0","1","2","3","4","5","6","7","8","9","A","B","C","D","E","F","G"};
 
+
+    public static void setAesKey(String aesKey) {
+        AES_KEY = aesKey;
+    }
 
     /**
      * 加密

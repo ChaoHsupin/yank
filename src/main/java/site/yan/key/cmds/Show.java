@@ -1,6 +1,6 @@
 package site.yan.key.cmds;
 
-import site.yan.key.Secrey;
+import site.yan.key.securtiy.Secrey;
 import site.yan.key.Utils;
 
 import java.io.BufferedReader;
@@ -11,7 +11,7 @@ import java.util.*;
 
 import static site.yan.key.Cmd.SECRET_FILE;
 import static site.yan.key.Cmd.arg;
-import static site.yan.key.Secrey.secretVerify;
+import static site.yan.key.securtiy.Secrey.secretVerify;
 import static site.yan.key.Utils.contains;
 
 /**
@@ -30,7 +30,7 @@ public class Show implements Run {
 
     private static void parse(String regex) {
 
-        if ("*".equals(regex)) regex = ".";
+        if (".".equals(regex)) regex = "";
 
         Map<String, String> map = new HashMap<>();
         File file = new File(SECRET_FILE);

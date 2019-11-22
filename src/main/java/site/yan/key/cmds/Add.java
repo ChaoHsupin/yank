@@ -2,7 +2,7 @@ package site.yan.key.cmds;
 
 import site.yan.key.Utils;
 
-import static site.yan.key.Secrey.addToFile;
+import static site.yan.key.securtiy.Secrey.*;
 
 /**
  * Create in 2019/11/22 10:14 by Zhao Xubin.
@@ -10,6 +10,7 @@ import static site.yan.key.Secrey.addToFile;
 public class Add implements Run {
     @Override
     public void execute() {
+        secretVerify();
         Utils.tell("输入标题：");
         String title = Utils.input();
         Utils.tell("输入用户名：");

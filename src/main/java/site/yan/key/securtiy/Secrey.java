@@ -1,11 +1,14 @@
-package site.yan.key;
+package site.yan.key.securtiy;
 
+
+import site.yan.key.Utils;
 
 import java.io.*;
 import java.util.Scanner;
 
 import static site.yan.key.Cmd.SECRET_FILE;
 import static site.yan.key.Cmd.SECRET_PIN;
+import static site.yan.key.securtiy.MD5Core.getMD5;
 
 /**
  * Create in 2019/11/21 15:52 by Zhao Xubin.
@@ -25,7 +28,7 @@ public class Secrey {
             try {
                 file.createNewFile();
                 FileWriter fileWriter = new FileWriter(file);
-                fileWriter.write(Secrey.secret(pin,true));
+                fileWriter.write(getMD5(pin));
                 fileWriter.close();
                 System.out.println("PIN码设置成功 :)");
             } catch (IOException e) {
@@ -49,8 +52,10 @@ public class Secrey {
         try {
             FileReader fileReader = new FileReader(file);
             BufferedReader reader = new BufferedReader(fileReader);
-            String re = reader.readLine();
-            return (Secrey.secret(pin,true).equals(re));
+            String read = reader.readLine();
+            String md5 = getMD5(pin);
+            AesCore.setAesKey(md5);
+            return (md5.equals(read));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -63,7 +68,7 @@ public class Secrey {
             if (!file.exists()) file.createNewFile();
             FileWriter fileWriter = new FileWriter(file, true);
             PrintWriter printWriter = new PrintWriter(fileWriter);
-            printWriter.println(Secrey.secret(title,true) + " " + Secrey.secret(info,true));
+            printWriter.println(Secrey.secret(title, true) + " " + Secrey.secret(info, true));
             fileWriter.close();
             return true;
         } catch (IOException e) {
@@ -72,7 +77,7 @@ public class Secrey {
         }
     }
 
-    public static String secret(String text ,boolean encode) {
-        return encode? AesCore.encrypt(text): AesCore.decrypt(text);
+    public static String secret(String text, boolean encode) {
+        return encode ? AesCore.encrypt(text) : AesCore.decrypt(text);
     }
 }
