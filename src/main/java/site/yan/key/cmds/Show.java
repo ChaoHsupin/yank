@@ -62,8 +62,8 @@ public class Show implements CmdBase {
                 }
             }
             System.out.println();
-            if (list.size() == 0) System.out.println("未找到相关密钥 :|");
-            else if (list.size() == 1) {
+            if (count == 0) System.out.println("未找到相关密钥 :|");
+            else if (count == 1) {
                 Utils.setClipboardString(passwordList.get(0));
                 Utils.tell("密钥已拷贝到粘贴板", true, true);
             } else {
@@ -77,7 +77,7 @@ public class Show implements CmdBase {
                         Utils.tell("编号超出范围", false, true);
                     } else {
                         Utils.setClipboardString(passwordList.get(orderNum - 1));
-
+                        Utils.tell("拷贝成功", true, true);
                     }
                 }
             }

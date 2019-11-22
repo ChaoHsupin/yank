@@ -17,7 +17,7 @@ public class Secrey {
     public static void checkHasPin() {
         File file = new File(SECRET_PIN);
         if (!file.exists()) {
-            System.out.print("欢迎使用由言言技术中心研发yank密钥管理工具\n" +
+            System.out.print("欢迎使用由言言技术中心研发yank密钥管理工具\n\n" +
                     "首次使用请设置4位PIN码：");
             String pin = new String(System.console().readPassword());
             if (!pin.matches("\\d{4}")) {
