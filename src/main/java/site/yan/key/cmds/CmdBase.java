@@ -7,6 +7,6 @@ package site.yan.key.cmds;
 /**
  * 命令执行逻辑
  */
-public interface Run {
+public interface CmdBase {
     void execute();
 }

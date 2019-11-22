@@ -1,7 +1,7 @@
 package site.yan.key;
 
 import site.yan.key.cmds.Add;
-import site.yan.key.cmds.Run;
+import site.yan.key.cmds.CmdBase;
 import site.yan.key.cmds.Show;
 
 import static site.yan.key.Cmd.CMD;
@@ -11,7 +11,7 @@ import static site.yan.key.Cmd.CMD;
  */
 public class Execute {
     public static void run() {
-        Run runnable = new Add();
+        CmdBase runnable = new Add();
         switch (CMD) {
             case "ADD":
                 break;

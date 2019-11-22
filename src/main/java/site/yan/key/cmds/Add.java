@@ -7,7 +7,7 @@ import static site.yan.key.securtiy.Secrey.*;
 /**
  * Create in 2019/11/22 10:14 by Zhao Xubin.
  */
-public class Add implements Run {
+public class Add implements CmdBase {
     @Override
     public void execute() {
         secretVerify();

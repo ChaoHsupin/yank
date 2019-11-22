@@ -17,7 +17,7 @@ import static site.yan.key.Utils.contains;
 /**
  * Create in 2019/11/22 10:16 by Zhao Xubin.
  */
-public class Show implements Run {
+public class Show implements CmdBase {
     @Override
     public void execute() {
         secretVerify();
