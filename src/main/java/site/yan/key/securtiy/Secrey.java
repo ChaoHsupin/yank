@@ -4,7 +4,6 @@ package site.yan.key.securtiy;
 import site.yan.key.Utils;
 
 import java.io.*;
-import java.util.Scanner;
 
 import static site.yan.key.Cmd.SECRET_FILE;
 import static site.yan.key.Cmd.SECRET_PIN;
