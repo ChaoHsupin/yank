@@ -20,7 +20,7 @@ public class Secrey {
         if (!file.exists()) {
             System.out.print("欢迎使用由言言技术中心研发yank密钥管理工具\n" +
                     "首次使用请设置4位PIN码：");
-            String pin = new Scanner(System.in).next();
+            String pin = new String(System.console().readPassword());
             if (!pin.matches("\\d{4}")) {
                 System.out.println("PIN码格式错误 ：(");
                 System.exit(0);
@@ -39,7 +39,7 @@ public class Secrey {
 
     public static void secretVerify() {
         Utils.tell("请输入PIN码（4位数字）:");
-        String pin = Utils.input();
+        String pin = new String(System.console().readPassword());
         if (!pin.matches("\\d{4}"))
             Utils.tell("PIN码格式错误", false, true);
         if (!verifyPin(pin)) {
